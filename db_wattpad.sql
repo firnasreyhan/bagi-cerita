@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2018 at 10:20 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Waktu pembuatan: 15 Des 2018 pada 17.14
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,22 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cerita`
+-- Struktur dari tabel `cerita`
 --
 
 CREATE TABLE `cerita` (
   `ID_CERITA` int(11) NOT NULL,
   `EMAIL` varchar(100) DEFAULT NULL,
   `JUDUL` varchar(100) DEFAULT NULL,
+  `GAMBAR` varchar(500) NOT NULL,
+  `SINOPSIS` varchar(10000) NOT NULL,
   `VIEW` int(11) DEFAULT '0',
   `TGL_POST` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `STATUS` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `cerita`
+--
+
+INSERT INTO `cerita` (`ID_CERITA`, `EMAIL`, `JUDUL`, `GAMBAR`, `SINOPSIS`, `VIEW`, `TGL_POST`, `STATUS`) VALUES
+(1, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-15 15:29:31', 0),
+(2, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-15 13:16:56', 0);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cerita_genre`
+-- Struktur dari tabel `cerita_genre`
 --
 
 CREATE TABLE `cerita_genre` (
@@ -49,10 +59,23 @@ CREATE TABLE `cerita_genre` (
   `ID_GENRE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `cerita_genre`
+--
+
+INSERT INTO `cerita_genre` (`ID_CERITA_GENRE`, `ID_CERITA`, `ID_GENRE`) VALUES
+(64, 2, 1),
+(65, 2, 2),
+(66, 2, 13),
+(67, 2, 14),
+(83, 1, 13),
+(84, 1, 14),
+(85, 1, 15);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genre`
+-- Struktur dari tabel `genre`
 --
 
 CREATE TABLE `genre` (
@@ -60,23 +83,55 @@ CREATE TABLE `genre` (
   `GENRE` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `genre`
+--
+
+INSERT INTO `genre` (`ID_GENRE`, `GENRE`) VALUES
+(1, 'Misteri'),
+(2, 'Horor'),
+(3, 'Petualangan'),
+(4, 'Drama'),
+(5, 'Fiksi'),
+(6, 'Dewasa'),
+(7, 'Songlit'),
+(8, 'Metropop'),
+(9, 'Chicklit'),
+(10, 'Teenlit'),
+(11, 'Sejarah'),
+(12, 'Fan-Fic'),
+(13, 'Sci-Fi'),
+(14, 'Humor'),
+(15, 'Romantis');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subcerita`
+-- Struktur dari tabel `subcerita`
 --
 
 CREATE TABLE `subcerita` (
   `ID_SUBCERITA` int(11) NOT NULL,
   `ID_CERITA` int(11) DEFAULT NULL,
+  `JUDUL_SUBCERITA` varchar(500) NOT NULL,
   `ISI_CERITA` varchar(10000) DEFAULT NULL,
+  `STATUS_SUBCERITA` int(1) NOT NULL,
   `TGL_POST` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `subcerita`
+--
+
+INSERT INTO `subcerita` (`ID_SUBCERITA`, `ID_CERITA`, `JUDUL_SUBCERITA`, `ISI_CERITA`, `STATUS_SUBCERITA`, `TGL_POST`) VALUES
+(2, 1, 'Satu', 'Kiara Nadila, semua orang memanggilnya Kia, dan dia memaksa untuk hanya dipanggil itu. Perempuan dengan rambut hitam sebahu, dan tidak pernah absen mengenakan <i>turtle neck</i> hitam, kamu tidak akan bisa menghitung jumlah <i>turtle neck</i> hitamnya. Banyak sekali, cukup banyak untuk dijadikan persediaan selama sebulan tanpa laundry. Akibatnya dia hampir dianggap tidak pernah ganti baju oleh orang-orang sekitarnya.', 0, '2018-12-15 16:05:09'),
+(6, 2, 'Prolog', '123', 1, '2018-12-15 13:22:09'),
+(12, 2, 'Satu', 'Isi', 1, '2018-12-15 16:13:11');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -90,7 +145,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`EMAIL`, `ID_LEVEL`, `NAMA`, `TGL_LAHIR`, `JENIS_KELAMIN`, `PASSWORD`, `SIGNUP_DATE`) VALUES
@@ -100,7 +155,7 @@ INSERT INTO `user` (`EMAIL`, `ID_LEVEL`, `NAMA`, `TGL_LAHIR`, `JENIS_KELAMIN`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_level`
+-- Struktur dari tabel `user_level`
 --
 
 CREATE TABLE `user_level` (
@@ -109,7 +164,7 @@ CREATE TABLE `user_level` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_level`
+-- Dumping data untuk tabel `user_level`
 --
 
 INSERT INTO `user_level` (`ID_LEVEL`, `KETERANGAN`) VALUES
@@ -121,14 +176,14 @@ INSERT INTO `user_level` (`ID_LEVEL`, `KETERANGAN`) VALUES
 --
 
 --
--- Indexes for table `cerita`
+-- Indeks untuk tabel `cerita`
 --
 ALTER TABLE `cerita`
   ADD PRIMARY KEY (`ID_CERITA`),
   ADD KEY `FK_RELATIONSHIP_3` (`EMAIL`);
 
 --
--- Indexes for table `cerita_genre`
+-- Indeks untuk tabel `cerita_genre`
 --
 ALTER TABLE `cerita_genre`
   ADD PRIMARY KEY (`ID_CERITA_GENRE`),
@@ -136,90 +191,90 @@ ALTER TABLE `cerita_genre`
   ADD KEY `FK_RELATIONSHIP_5` (`ID_GENRE`);
 
 --
--- Indexes for table `genre`
+-- Indeks untuk tabel `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`ID_GENRE`);
 
 --
--- Indexes for table `subcerita`
+-- Indeks untuk tabel `subcerita`
 --
 ALTER TABLE `subcerita`
   ADD PRIMARY KEY (`ID_SUBCERITA`),
   ADD KEY `FK_RELATIONSHIP_2` (`ID_CERITA`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`EMAIL`),
   ADD KEY `FK_RELATIONSHIP_1` (`ID_LEVEL`);
 
 --
--- Indexes for table `user_level`
+-- Indeks untuk tabel `user_level`
 --
 ALTER TABLE `user_level`
   ADD PRIMARY KEY (`ID_LEVEL`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `cerita`
+-- AUTO_INCREMENT untuk tabel `cerita`
 --
 ALTER TABLE `cerita`
-  MODIFY `ID_CERITA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `cerita_genre`
+-- AUTO_INCREMENT untuk tabel `cerita_genre`
 --
 ALTER TABLE `cerita_genre`
-  MODIFY `ID_CERITA_GENRE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CERITA_GENRE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
--- AUTO_INCREMENT for table `genre`
+-- AUTO_INCREMENT untuk tabel `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `ID_GENRE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_GENRE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `subcerita`
+-- AUTO_INCREMENT untuk tabel `subcerita`
 --
 ALTER TABLE `subcerita`
-  MODIFY `ID_SUBCERITA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_SUBCERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `user_level`
+-- AUTO_INCREMENT untuk tabel `user_level`
 --
 ALTER TABLE `user_level`
   MODIFY `ID_LEVEL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `cerita`
+-- Ketidakleluasaan untuk tabel `cerita`
 --
 ALTER TABLE `cerita`
   ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`EMAIL`) REFERENCES `user` (`EMAIL`);
 
 --
--- Constraints for table `cerita_genre`
+-- Ketidakleluasaan untuk tabel `cerita_genre`
 --
 ALTER TABLE `cerita_genre`
   ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`ID_CERITA`) REFERENCES `cerita` (`ID_CERITA`),
   ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`ID_GENRE`) REFERENCES `genre` (`ID_GENRE`);
 
 --
--- Constraints for table `subcerita`
+-- Ketidakleluasaan untuk tabel `subcerita`
 --
 ALTER TABLE `subcerita`
   ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`ID_CERITA`) REFERENCES `cerita` (`ID_CERITA`);
 
 --
--- Constraints for table `user`
+-- Ketidakleluasaan untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_LEVEL`) REFERENCES `user_level` (`ID_LEVEL`);
