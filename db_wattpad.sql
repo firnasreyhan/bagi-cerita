@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Des 2018 pada 17.14
+-- Waktu pembuatan: 16 Des 2018 pada 07.13
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.2.12
 
@@ -44,8 +44,38 @@ CREATE TABLE `cerita` (
 --
 
 INSERT INTO `cerita` (`ID_CERITA`, `EMAIL`, `JUDUL`, `GAMBAR`, `SINOPSIS`, `VIEW`, `TGL_POST`, `STATUS`) VALUES
-(1, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-15 15:29:31', 0),
-(2, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-15 13:16:56', 0);
+(1, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(2, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(3, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(4, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(5, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(6, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(7, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(8, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(9, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(10, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(11, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(12, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(13, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(14, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(15, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(16, 'rezaariestyaputra@yahoo.co.id', 'Hello Dangdut', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 05:24:45', 1),
+(17, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(18, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(19, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(20, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(21, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(22, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(23, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(24, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(25, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(26, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(27, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(28, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(29, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(30, 'rezaariestyaputra@yahoo.co.id', 'Hello Goodbye', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 04:33:51', 1),
+(31, 'rezaariestyaputra@yahoo.co.id', 'Sunny Dayss', 'Screenshot (5).png', 'Kepada cahaya matahari yang mengisi hari, terima kasih sudah hadir.', 0, '2018-12-16 04:33:43', 2),
+(32, 'rezaariestyaputra@yahoo.co.id', 'Hello Dangdut', 'Screenshot (3).png', 'When you say hello, are you ready to say goodbye?', 0, '2018-12-16 05:24:45', 1);
 
 -- --------------------------------------------------------
 
@@ -125,8 +155,8 @@ CREATE TABLE `subcerita` (
 
 INSERT INTO `subcerita` (`ID_SUBCERITA`, `ID_CERITA`, `JUDUL_SUBCERITA`, `ISI_CERITA`, `STATUS_SUBCERITA`, `TGL_POST`) VALUES
 (2, 1, 'Satu', 'Kiara Nadila, semua orang memanggilnya Kia, dan dia memaksa untuk hanya dipanggil itu. Perempuan dengan rambut hitam sebahu, dan tidak pernah absen mengenakan <i>turtle neck</i> hitam, kamu tidak akan bisa menghitung jumlah <i>turtle neck</i> hitamnya. Banyak sekali, cukup banyak untuk dijadikan persediaan selama sebulan tanpa laundry. Akibatnya dia hampir dianggap tidak pernah ganti baju oleh orang-orang sekitarnya.', 0, '2018-12-15 16:05:09'),
-(6, 2, 'Prolog', '123', 1, '2018-12-15 13:22:09'),
-(12, 2, 'Satu', 'Isi', 1, '2018-12-15 16:13:11');
+(6, 2, 'Prolog', '123', 1, '2018-12-16 04:15:45'),
+(12, 2, 'Satu', 'Isi', 1, '2018-12-16 04:15:32');
 
 -- --------------------------------------------------------
 
@@ -224,7 +254,7 @@ ALTER TABLE `user_level`
 -- AUTO_INCREMENT untuk tabel `cerita`
 --
 ALTER TABLE `cerita`
-  MODIFY `ID_CERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_CERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `cerita_genre`
@@ -242,7 +272,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT untuk tabel `subcerita`
 --
 ALTER TABLE `subcerita`
-  MODIFY `ID_SUBCERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_SUBCERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_level`

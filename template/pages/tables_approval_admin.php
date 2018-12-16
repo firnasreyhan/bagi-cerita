@@ -1,20 +1,11 @@
 <?php
-include('session.php');
-// Create database connection using config file
-include_once("../proses/connection/koneksi.php");
+   include('session.php');
+	
+	// Create database connection using config file
+	include_once("../proses/connection/koneksi.php");
 
-// Getting id from url
-$id_cerita = $_GET['ID_CERITA'];
-
-// Fetech user data based on id
-$result = mysqli_query($mysqli, "SELECT * FROM subcerita WHERE ID_CERITA=$id_cerita order by TGL_POST DESC");
-$result_cerita = mysqli_query($mysqli, "SELECT * FROM cerita WHERE ID_CERITA=$id_cerita");
-while($cerita = mysqli_fetch_assoc($result_cerita))
-{
-    $judul = $cerita['JUDUL'];
-    $sinopsis = $cerita['SINOPSIS'];
-	$cover = $cerita['GAMBAR'];
-}
+	// Fetch all users data from database
+	$result = mysqli_query($mysqli, "SELECT * FROM cerita");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,72 +93,48 @@ while($cerita = mysqli_fetch_assoc($result_cerita))
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-9">
-                    <h1 class="page-header"><?php echo $judul;?></h1>
-                </div>
-                <div class="col-lg-3">
-                    <?php
-						echo "<a type='button' class='btn btn-primary page-header' href=forms_subcerita.php?ID_CERITA=".$id_cerita.">Tambah Chapter</a> ";
-						echo "<a type='button' class='btn btn-warning page-header' href=forms_edit.php?ID_CERITA=".$id_cerita.">Edit Cerita</a>";
-					?>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Cerita</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-                        <div class="panel-heading">
-                            Sinopsis
-                        </div>
-                        <div class="panel-body">
-                            <p><?php echo $sinopsis;?></p>
-                        </div>
-                    </div>
-				</div>
-			</div>
             <div class="row">
-				<div class="col-lg-4">
-					<div class="panel panel-default">
-                        <div class="panel-heading">
-                            Cover
-                        </div>
-                        <div class="panel-body">
-                            <img src="../img/<?php echo $cover;?>" class="img-responsive" width="300px" alt="Responsive image">
-                        </div>
-                    </div>
-				</div>
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            List Chapter
+                            List Cerita
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Judul Chapter</th>
+                                        <th>Judul</th>
+                                        <th>Jumlah View</th>
                                         <th>Tanggal Post</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-									<?php  
-										while($cerita = mysqli_fetch_array($result)) {         
-											echo "<tr>";
-											echo "<td>".$cerita['JUDUL_SUBCERITA']."</td>";
-											echo "<td>".$cerita['TGL_POST']."</td>";
-											if($cerita['STATUS_SUBCERITA'] == 0){
-												echo "<td><label class='btn-warning btn-xs'>Diarsipkan</label></td>";
-											} else {
-												echo "<td><label class='btn-success btn-xs'>Dipubikasikan</label></td>";
-											}
-											echo "<td><a type='button' class='btn btn-warning btn-xs' href=forms_subcerita_edit.php?ID_SUBCERITA=".$cerita['ID_SUBCERITA'].">Edit</a> | <a type='button' class='btn btn-danger btn-xs' href=delete_subcerita.php?ID_SUBCERITA=".$cerita['ID_SUBCERITA'].">Hapus</a>";
-											echo "</tr>";			
+								<?php  
+									while($cerita = mysqli_fetch_array($result)) {         
+										echo "<tr>";
+										echo "<td>".$cerita['JUDUL']."</td>";
+										echo "<td>".$cerita['VIEW']."</td>";
+										echo "<td>".$cerita['TGL_POST']."</td>";
+										if($cerita['STATUS'] == 0){
+											echo "<td><label class='btn-warning btn-xs'>Pending</label></td>";
+										} else if ($cerita['STATUS'] == 1){
+											echo "<td><label class='btn-success btn-xs'>Diterima</label></td>";
+										} else {
+											echo "<td><label class='btn-danger btn-xs'>Ditolak</label></td>";
 										}
-									?>
+										echo "<td><a type='button' class='btn btn-success btn-xs' href=diterima.php?ID_CERITA=".$cerita['ID_CERITA'].">Diterima</a> | <a type='button' class='btn btn-warning btn-xs' href=dipending.php?ID_CERITA=".$cerita['ID_CERITA'].">Dipending</a> | <a type='button' class='btn btn-danger btn-xs' href=ditolak.php?ID_CERITA=".$cerita['ID_CERITA'].">Ditolak</a>";
+										echo "</tr>";			
+									}
+								?>	
                                 </tbody>
                             </table>
                         </div>
@@ -205,7 +172,7 @@ while($cerita = mysqli_fetch_assoc($result_cerita))
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true,
-			"order": [[ 1, "asc" ]]
+			"order": [[ 2, "asc" ]]
         });
     });
     </script>
