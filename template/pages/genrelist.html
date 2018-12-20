@@ -1,7 +1,3 @@
-<?php
-	// Create database connection using config file
-	include_once("../proses/connection/koneksi.php");
-?>
 <html>
 
 <head>
@@ -27,14 +23,14 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Genre List <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Genre List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <div>
@@ -45,36 +41,36 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-9 bg-light">
-				<?php 
-					$halaman = 10;
-					$page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1;
-					$mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-					$result = mysqli_query($mysqli, "SELECT * FROM cerita");
-					$total = mysqli_num_rows($result);
-					$pages = ceil($total/$halaman);            
-					$query = mysqli_query($mysqli, "select * from cerita LIMIT $mulai, $halaman")or die(mysql_error);
-					//$no =$mulai+1;
-									 
-					while ($data = mysqli_fetch_assoc($query)) {
-				?>
+				
 				<div class="row m-2 border p-2">
                     <div class="col-5">
-                        <img src="../img/<?php echo $data['GAMBAR'];?>" alt="" class="img-responsive" width="300px">
+                        <ul style="list-style-type:none">
+                            <li>Misteri</li>
+                            <li>Horror</li>
+                            <li>Petualangan</li>
+                            <li>Drama</li>
+                            <li>Fiksi</li>
+                            <li>Dewasa</li>
+                            <li>Sci-Fi</li>
+                            <li>Romantis</li>
+                        </ul>
                     </div>
                     <div class="col-7">
-						<h2><?php echo $data['JUDUL'];?></h2>
-                        <p><?php echo $data['SINOPSIS'];?></p>
-							<a type='button' class='btn btn-warning btn-xs' href="cerita_detail.php?ID_CERITA=<?php echo $data['ID_CERITA'];?>">Read More</a>
+						<ul style="list-style-type:none">
+                            <li>Songlit</li>
+                            <li>Metropop</li>
+                            <li>Chicklit</li>
+                            <li>Teenlit</li>
+                            <li>Sejarah</li>
+                            <li>Fan-fic</li>
+                            <li>Humor</li>
+                        </ul>
                     </div>
                 </div>
-				<?php               
-					} 
-				?>
+				
 				<div class="row" style="padding:10px">
 					<div class="col-12 bg-light" style="text-align:center">
-						<?php for ($i=1; $i<=$pages ; $i++){ ?>
-							<a type='button' class='btn btn-primary btn-xs' href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a>
-						<?php } ?>
+						
 					</div>
 				</div>
             </div>
@@ -91,4 +87,3 @@
 		</div>
 	</div>
 </body>
-</html>
