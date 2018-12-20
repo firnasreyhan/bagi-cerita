@@ -1,14 +1,7 @@
 <?php
-include_once("../proses/connection/koneksi.php");
-
-// Getting id from url
-$id_subcerita = $_GET['ID_SUBCERITA'];
-$result_subcerita = mysqli_query($mysqli, "SELECT * FROM subcerita WHERE ID_SUBCERITA=$id_subcerita");
-while($subcerita = mysqli_fetch_assoc($result_subcerita))
-{
-	$judul_subcerita = $subcerita['JUDUL_SUBCERITA'];
-	$isi_cerita = $subcerita['ISI_CERITA'];
-}
+	// Create database connection using config file
+	include_once("../proses/connection/koneksi.php");
+	$id_genre = $_GET['ID_GENRE'];
 ?>
 <html>
 
@@ -35,14 +28,14 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Genre List <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Genre List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
             <div>
@@ -53,13 +46,38 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
     <div class="container-fluid">
         <div class="row">
             <div class="col-9 bg-light">
-				
-				<div class="col m-2 border p-2">
-                    <h2><?php echo $judul_subcerita;?></h2>
-                    <div class="row m-2 border p-2">
-                        <p><?php echo $isi_cerita;?></p>
+				<?php 
+					$halaman = 10;
+					$page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1;
+					$mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+					$result = mysqli_query($mysqli, "SELECT cerita.ID_CERITA, cerita.JUDUL, cerita.GAMBAR, cerita.SINOPSIS FROM cerita INNER JOIN cerita_genre ON cerita.ID_CERITA = cerita_genre.ID_CERITA AND cerita_genre.ID_GENRE = $id_genre");
+					$total = mysqli_num_rows($result);
+					$pages = ceil($total/$halaman);            
+					$query = mysqli_query($mysqli, "SELECT cerita.ID_CERITA, cerita.JUDUL, cerita.GAMBAR, cerita.SINOPSIS FROM cerita INNER JOIN cerita_genre ON cerita.ID_CERITA = cerita_genre.ID_CERITA AND cerita_genre.ID_GENRE = $id_genre LIMIT $mulai, $halaman")or die(mysql_error);
+					//$no =$mulai+1;
+									 
+					while ($data = mysqli_fetch_assoc($query)) {
+				?>
+				<div class="row m-2 border p-2">
+                    <div class="col-5">
+                        <img src="../img/<?php echo $data['GAMBAR'];?>" alt="" class="img-responsive" width="300px">
+                    </div>
+                    <div class="col-7">
+						<h2><?php echo $data['JUDUL'];?></h2>
+                        <p><?php echo $data['SINOPSIS'];?></p>
+							<a type='button' class='btn btn-warning btn-xs' href="pageceritadetail.php?ID_CERITA=<?php echo $data['ID_CERITA'];?>">Read More</a>
                     </div>
                 </div>
+				<?php               
+					} 
+				?>
+				<div class="row" style="padding:10px">
+					<div class="col-12 bg-light" style="text-align:center">
+						<?php for ($i=1; $i<=$pages ; $i++){ ?>
+							<a type='button' class='btn btn-primary btn-xs' href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a>
+						<?php } ?>
+					</div>
+				</div>
             </div>
             <div class="col-3 bg-dark">
                 Sidebar
@@ -74,3 +92,4 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
 		</div>
 	</div>
 </body>
+</html>

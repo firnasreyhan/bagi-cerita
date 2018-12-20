@@ -39,10 +39,6 @@ while($cerita = mysqli_fetch_assoc($result_cerita))
         // Show message when user added
         header("Location:tables_subcerita.php?ID_CERITA=".$id_cerita);
     }
-	
-	if(isset($_POST['kembali'])) {
-        header("Location:tables_subcerita.php?ID_CERITA=".$id_cerita);
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,13 +103,10 @@ while($cerita = mysqli_fetch_assoc($result_cerita))
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="tables.php"><i class="fa fa-dashboard fa-fw"></i> Daftar Cerita</a>
+                            <a href="tables.php"><i class="fa fa-table fa-fw"></i> Daftar Cerita</a>
                         </li>
                         <li>
                             <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Tulis Judul Cerita</a>
-                        </li>
-						<li <?php if($level != 1){echo " style='display:none'";}?>>
-                            <a href="tables_approval_admin.php"><i class="fa fa-table fa-fw"></i> Approval Cerita</a>
                         </li>
                     </ul>
                 </div>
@@ -150,7 +143,6 @@ while($cerita = mysqli_fetch_assoc($result_cerita))
                                         </div>
                                         <input type="submit" name="publish" class="btn btn-success" value="Publikasikan"/>
                                         <input type="submit" name="arsip" class="btn btn-warning" value="Arsipkan"/>
-                                        <input type="submit" name="kembali" class="btn btn-danger" value="Kembali"/>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

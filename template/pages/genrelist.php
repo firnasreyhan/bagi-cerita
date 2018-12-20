@@ -1,14 +1,6 @@
 <?php
-include_once("../proses/connection/koneksi.php");
-
-// Getting id from url
-$id_subcerita = $_GET['ID_SUBCERITA'];
-$result_subcerita = mysqli_query($mysqli, "SELECT * FROM subcerita WHERE ID_SUBCERITA=$id_subcerita");
-while($subcerita = mysqli_fetch_assoc($result_subcerita))
-{
-	$judul_subcerita = $subcerita['JUDUL_SUBCERITA'];
-	$isi_cerita = $subcerita['ISI_CERITA'];
-}
+	// Create database connection using config file
+	include_once("../proses/connection/koneksi.php");
 ?>
 <html>
 
@@ -38,7 +30,7 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
                 <li class="nav-item">
                     <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Genre List <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -54,12 +46,23 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
         <div class="row">
             <div class="col-9 bg-light">
 				
-				<div class="col m-2 border p-2">
-                    <h2><?php echo $judul_subcerita;?></h2>
-                    <div class="row m-2 border p-2">
-                        <p><?php echo $isi_cerita;?></p>
-                    </div>
+				<div class="row m-2 border p-2">
+				<?php       
+					$query = mysqli_query($mysqli, "select * from genre")or die(mysql_error);		 
+					while ($data = mysqli_fetch_assoc($query)) {
+				?>
+                    <div class="col-6">
+                        <a href="genresearch.php?ID_GENRE=<?php echo $data['ID_GENRE'];?>"><?php echo $data['GENRE'];?></a>
+                    </div>	
+				<?php               
+					} 
+				?>
                 </div>
+				<div class="row" style="padding:10px">
+					<div class="col-12 bg-light" style="text-align:center">
+						
+					</div>
+				</div>
             </div>
             <div class="col-3 bg-dark">
                 Sidebar

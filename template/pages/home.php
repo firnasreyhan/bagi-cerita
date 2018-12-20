@@ -64,7 +64,7 @@
                     <div class="col-7">
 						<h2><?php echo $data['JUDUL'];?></h2>
                         <p><?php echo $data['SINOPSIS'];?></p>
-							<a type='button' class='btn btn-warning btn-xs' href="cerita_detail.php?ID_CERITA=<?php echo $data['ID_CERITA'];?>">Read More</a>
+							<a type='button' class='btn btn-warning btn-xs' href="pageceritadetail.php?ID_CERITA=<?php echo $data['ID_CERITA'];?>">Read More</a>
                     </div>
                 </div>
 				<?php               

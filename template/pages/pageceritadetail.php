@@ -1,14 +1,19 @@
 <?php
-include_once("../proses/connection/koneksi.php");
+	// Create database connection using config file
+	include_once("../proses/connection/koneksi.php");
+	
+	// Getting id from url
+	$id_cerita = $_GET['ID_CERITA'];
 
-// Getting id from url
-$id_subcerita = $_GET['ID_SUBCERITA'];
-$result_subcerita = mysqli_query($mysqli, "SELECT * FROM subcerita WHERE ID_SUBCERITA=$id_subcerita");
-while($subcerita = mysqli_fetch_assoc($result_subcerita))
-{
-	$judul_subcerita = $subcerita['JUDUL_SUBCERITA'];
-	$isi_cerita = $subcerita['ISI_CERITA'];
-}
+	// Fetech user data based on id
+	$result = mysqli_query($mysqli, "SELECT * FROM subcerita WHERE ID_CERITA=$id_cerita order by ID_SUBCERITA ASC");
+	$result_cerita = mysqli_query($mysqli, "SELECT * FROM cerita WHERE ID_CERITA=$id_cerita");
+	while($cerita = mysqli_fetch_assoc($result_cerita))
+	{
+		$judul = $cerita['JUDUL'];
+		$sinopsis = $cerita['SINOPSIS'];
+		$cover = $cerita['GAMBAR'];
+	}
 ?>
 <html>
 
@@ -53,11 +58,31 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
     <div class="container-fluid">
         <div class="row">
             <div class="col-9 bg-light">
-				
-				<div class="col m-2 border p-2">
-                    <h2><?php echo $judul_subcerita;?></h2>
-                    <div class="row m-2 border p-2">
-                        <p><?php echo $isi_cerita;?></p>
+                <div class="row m-2 border p-2">
+                    <div class="col-5">
+                        <h2><?php echo $judul;?></h2>
+                        <br><br>
+                        <img src="../img/<?php echo $cover;?>" class="img-responsive" width="300px" alt="">
+                    </div>
+                    <div class="col-7">
+                        <br><br><br><br><br><br>
+                        <p><?php echo $sinopsis;?></p><br><br>
+                        <h4>List Chapter</h4>
+                        <ul>
+							<?php  
+								while($cerita = mysqli_fetch_array($result)) {         	
+									echo "<li><a type='button' href=chapterdetail.php?ID_SUBCERITA=".$cerita['ID_SUBCERITA'].">".$cerita['JUDUL_SUBCERITA']."</a></li>";		
+								}
+							?>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <div class="row" style="padding:10px">
+                    <div class="col-12 bg-light" style="text-align:center">
+
                     </div>
                 </div>
             </div>
@@ -66,11 +91,11 @@ while($subcerita = mysqli_fetch_assoc($result_subcerita))
             </div>
         </div>
     </div>
-	<div class="row">
-		<div class="col-12">
-			<footer class="bg-secondary text-center">
-				Copyright RezaAriestyaPutra @POLINEMA
-			</footer>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-12">
+            <footer class="bg-secondary text-center">
+                Copyright RezaAriestyaPutra @POLINEMA
+            </footer>
+        </div>
+    </div>
 </body>
